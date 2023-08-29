@@ -1,8 +1,6 @@
 <script lang="ts">
   import { selectOnFocus } from '../actions';
-  import { focusOnInit } from '../actions';
 
-  import { tick } from 'svelte';
   import type { TodoType } from '../types/todo.type';
   import { createEventDispatcher } from 'svelte';
 
@@ -51,7 +49,11 @@
 
 <div class="stack-small">
   {#if editing}
-    <form on:submit|preventDefault={onSave} class="stack-small" on:keydown={(e) => e.key === 'Escape' && onCancel()}>
+    <form
+      on:submit|preventDefault={onSave}
+      class="stack-small"
+      on:keydown={(e) => e.key === 'Escape' && onCancel()}
+    >
       <div class="form-group">
         <label for="todo-{todo.id}" class="todo-label">
           New name for '{todo.name}'
@@ -68,11 +70,20 @@
       </div>
     </form>
     <div class="btn-group">
-      <button class="btn todo-cancel" type="button" on:click={onCancel}>
+      <button
+        class="btn todo-cancel"
+        type="button"
+        on:click={onCancel}
+      >
         Cancel
         <span class="visually-hidden">{todo.name}</span>
       </button>
-      <button class="btn btn__primary todo-edit" type="submit" disabled={!name} on:click={onSave}>
+      <button
+        class="btn btn__primary todo-edit"
+        type="submit"
+        disabled={!name}
+        on:click={onSave}
+      >
         Save
         <span class="visually-hidden">{todo.name}</span>
       </button>
@@ -90,14 +101,20 @@
       </label>
     </div>
     <div class="btn-group">
-        <button type="button" class="btn" on:click={onEdit} use:selectOnFocus use:focusEditingButton>
-          Edit
-          <span class="visually-hidden">{todo.name}</span>
-        </button>
-        <button type="button" class="btn btn__danger" on:click={onRemove}>
-          Delete
-          <span class="visually-hidden">{todo.name}</span>
-        </button>
+      <button
+        type="button"
+        class="btn"
+        on:click={onEdit}
+        use:selectOnFocus
+        use:focusEditingButton
+      >
+        Edit
+        <span class="visually-hidden">{todo.name}</span>
+      </button>
+      <button type="button" class="btn btn__danger" on:click={onRemove}>
+        Delete
+        <span class="visually-hidden">{todo.name}</span>
+      </button>
     </div>
   {/if}
 </div>

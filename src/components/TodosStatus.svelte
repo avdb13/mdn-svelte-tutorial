@@ -2,11 +2,10 @@
   import type { TodoType } from "../types/todo.type";
 
   export let todos: TodoType[];
+  let headingElem: HTMLElement;
 
   $: totalTodos = todos.length;
   $: completedTodos = todos.filter(e => e.completed).length;
-
-  let headingElem: HTMLElement;
 
   export const focus = () => {
     headingElem.focus();

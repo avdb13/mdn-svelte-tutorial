@@ -1,14 +1,13 @@
 <script lang="ts">
-  import { selectOnFocus } from '../actions.ts';
+  import { selectOnFocus } from '../actions';
   import { onMount } from 'svelte';
   import { createEventDispatcher } from 'svelte';
 
-  export let autofocus = false;
+  const dispatch = createEventDispatcher();
 
+  export let autofocus = false;
   let name = '';
   let nameElem: HTMLElement;
-
-  const dispatch = createEventDispatcher();
 
   const addTodo = () => {
     dispatch('addTodo', name);
@@ -45,7 +44,11 @@
     autocomplete="off"
     class="input input__lg"
   />
-  <button type="submit" disabled={!name} class="btn btn__primary btn__lg">
+  <button
+    type="submit"
+    disabled={!name}
+    class="btn btn__primary btn__lg"
+  >
     Add
   </button>
 </form>
